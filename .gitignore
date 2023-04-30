@@ -2,4 +2,4 @@ Brouillon_Thomas.ipynb
 first-research.ipynb
 *.csv
 *.pyc
-.gitignore
+*.cpp
