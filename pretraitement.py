@@ -1,13 +1,13 @@
 import pandas as pd
 import numpy as np
 
-def get_item_make_arrays(df):
+def get_item_make_arrays(df,nb_colonnes):
     ''' 
         Retourne toutes les catégories et les marques présentes dans le DataFrame df
     '''
     items = []
     marques = []
-    for i in range(1, 25):
+    for i in range(1, nb_colonnes+1):
         items.append(df['item'+str(i)].astype(str).unique())
         marques.append(df['make'+str(i)].astype(str).unique())
 
@@ -17,7 +17,7 @@ def get_item_make_arrays(df):
     return tableau_des_items, tableau_des_marques
 
 
-def dataframe_make(df, tab_make):
+def dataframe_make(df, tab_make,nb_colonnes):
     ''' 
         Fait un one-hot encoding sur les marques du Dataframe df
         
@@ -28,10 +28,11 @@ def dataframe_make(df, tab_make):
         Returns:
             df_make
         '''
-    df_make = pd.DataFrame(columns=tab_make, index=df.index)
+    col = ['ID'] + tab_make
+    df_make = pd.DataFrame(columns=col, index=df.index)
 
     for row in df.index:
-        for i in range(1, 25):
+        for i in range(1, nb_colonnes+1):
             marque = df[f'make{i}'][row]
             nb_items = df[f"Nbr_of_prod_purchas{i}"][row]
 
@@ -45,7 +46,7 @@ def dataframe_make(df, tab_make):
     return df_make
 
 
-def dataframe_item(df, tab_item):
+def dataframe_item(df, tab_item, nb_colonnes):
     ''' 
         Fait un one-hot encoding sur les catégories du Dataframe df
         
@@ -59,7 +60,7 @@ def dataframe_item(df, tab_item):
     df_item = pd.DataFrame(columns=tab_item, index=df.index)
 
     for row in df.index:
-        for i in range(1, 25):
+        for i in range(1, nb_colonnes+1):
             item_column = f"{df[f'item{i}'][row]}"
             nb_items = df[f"Nbr_of_prod_purchas{i}"][row]
 
