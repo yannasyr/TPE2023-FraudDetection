@@ -4,6 +4,8 @@ import numpy as np
 def get_item_make_arrays(df,nb_colonnes):
     ''' 
         Retourne toutes les catégories et les marques présentes dans le DataFrame df
+        nb_colonnes correspond au nombre d'objets sur lequel on se limite 
+        (la plupart des paniers safes et frauduleux sont à 4objets et il n'y a pas d'augmentation de la fraude au dessus de 5objets)
     '''
     items = []
     marques = []
@@ -26,7 +28,7 @@ def dataframe_make(df, tab_make,nb_colonnes):
             - tab_make (Numpy array): tableau qui contient toutes les marques qui serviront de colonne
             
         Returns:
-            df_make
+            df_make : DataFrame 'ID' + une colonne par marque
         '''
     col = ['ID'] + tab_make
     df_make = pd.DataFrame(columns=col, index=df.index)
@@ -36,7 +38,7 @@ def dataframe_make(df, tab_make,nb_colonnes):
             marque = df[f'make{i}'][row]
             nb_items = df[f"Nbr_of_prod_purchas{i}"][row]
 
-            if type(marque) == float: # Stop si valeur nulle
+            if type(marque) == float: # Stop si valeur nulle. J'ai essayé de retirer cette partie mais ça plante. Dans le doute, on laisse
                 break
         
             make_column = f"{marque}"
@@ -55,7 +57,7 @@ def dataframe_item(df, tab_item, nb_colonnes):
             - tab_item (Numpy array): tableau qui contient toutes les catégories qui serviront de colonne
             
         Returns:
-            df_item
+            df_item : DataFrame 'ID' + une colonne par catégorie
         '''
     df_item = pd.DataFrame(columns=tab_item, index=df.index)
 
