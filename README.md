@@ -7,3 +7,5 @@ Modèles utilisés
 - Logistic Classifier
 - Random Forest
 - XGBoost
+
+Dans /Yann_notebooks, le nettoyage n'a pas encore été fait sur les 4 et 5. En espérant que ça ne plante pas trop et que ce soit lisible en attendant.
