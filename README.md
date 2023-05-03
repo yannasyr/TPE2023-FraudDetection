@@ -9,3 +9,5 @@ Modèles utilisés
 - XGBoost
 
 Dans /Yann_notebooks, le nettoyage n'a pas encore été fait sur les 4 et 5. En espérant que ça ne plante pas trop et que ce soit lisible en attendant.
+
+Le dossier /modeles n'est pas à jour. 
